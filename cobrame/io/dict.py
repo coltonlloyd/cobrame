@@ -370,6 +370,8 @@ def _add_process_data_from_dict(model, process_data_dict):
     for attribute in _PROCESS_DATA_TYPE_DEPENDENCIES.get(process_data_type,
                                                          []):
         value = process_data_info[attribute]
+        if attribute in ['RNA_products']:
+            value = set(value)
         try:
             setattr(process_data, attribute, value)
         except AttributeError:
