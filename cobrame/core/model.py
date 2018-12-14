@@ -269,6 +269,14 @@ class MEModel(Model):
         if not skip:
             skip = []
 
+        def get_coeff(v):
+            import symengine
+            if isinstance(v, symengine.Basic):
+                coeff = v.subs(mu, .1)
+            else:
+                coeff = v
+            return coeff
+
         complex_data_list = [i.id for i in self.complex_data
                              if i.id not in skip]
         for c_d in complex_data_list:
@@ -282,7 +290,7 @@ class MEModel(Model):
             if 'partially' not in p.id and p.id not in skip:
                 delete = True
                 for rxn in p.reactions:
-                    if rxn.metabolites[p] < 0:
+                    if get_coeff(rxn.metabolites[p]) < 0:
                         delete = False
                         break
 
@@ -309,7 +317,7 @@ class MEModel(Model):
                 delete = True
                 for rxn in p.reactions:
 
-                    if rxn.metabolites[p] < 0 and not rxn.id.startswith(
+                    if get_coeff(rxn.metabolites[p]) < 0 and not rxn.id.startswith(
                             'degradation'):
                         delete = False
                         break
@@ -327,7 +335,7 @@ class MEModel(Model):
             delete = False if m.id in skip else True
 
             for rxn in m.reactions:
-                if rxn.metabolites[m] < 0 and not rxn.id.startswith('DM_'):
+                if get_coeff(rxn.metabolites[m]) < 0 and not rxn.id.startswith('DM_'):
                     delete = False
             if delete:
                 try:

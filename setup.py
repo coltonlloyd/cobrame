@@ -6,7 +6,8 @@ setup(name="cobrame",
       author="Colton Lloyd and Ali Ebrahim",
       url="https://github.com/SBRG/cobrame",
       install_requires=["sympy", "six", "Biopython", "cobra<=0.5.11", "pandas",
-                        "scipy", "numpy", "setuptools", "jsonschema"],
+                        "scipy", "numpy", "setuptools", "jsonschema",
+                        "symengine"],
       package_data={'': ['io/JSONSCHEMA']},
       packages=find_packages()
       )

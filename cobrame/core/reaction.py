@@ -890,7 +890,12 @@ class TranscriptionReaction(MEReaction):
         trna_mass = rrna_mass = ncrna_mass = mrna_mass = 0.
 
         for met, v in iteritems(new_stoich):
-            if v < 0 or not hasattr(met, "RNA_type"):
+            import symengine
+            if isinstance(v, symengine.Basic):
+                coeff = v.subs(mu, .1)
+            else:
+                coeff = v
+            if coeff < 0 or not hasattr(met, "RNA_type"):
                 continue
             if met.RNA_type == 'tRNA':
                 trna_mass += met.formula_weight / 1000.  # kDa

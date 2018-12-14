@@ -1,6 +1,8 @@
 from __future__ import absolute_import
 
-from sympy import Symbol
+#from sympy import Symbol
+#from cobrame.util.symbolics import Symbol
+from symengine import Symbol
 
 # If cobrapy and optlang cannot handle symbolic parameters, assume using
 # cobrapy versions <= 0.5.11

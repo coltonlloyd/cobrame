@@ -2,14 +2,14 @@ from __future__ import print_function, absolute_import, division
 
 from six import iteritems
 
-from sympy import Basic, lambdify
+from symengine import Basic, lambdify
 
 from cobrame import mu
 
 
 def _compile(expr, variable=mu):
     """compiles a sympy expression"""
-    return lambdify(variable, expr) if isinstance(expr, Basic) else expr
+    return lambdify(variable, [expr]) if isinstance(expr, Basic) else expr
 
 
 def _eval(expr, mu0):
@@ -34,7 +34,7 @@ def compile_expressions(me_model, variable=mu):
         for met, stoic in iteritems(r._metabolites):
             if isinstance(stoic, Basic):
                 expressions[(me_model.metabolites.index(met), i)] = \
-                    lambdify(variable, stoic)
+                    lambdify(variable, [stoic])
         # If either the lower or upper reaction bounds are symbolic
         if isinstance(r.lower_bound, Basic) or \
                 isinstance(r.upper_bound, Basic):
