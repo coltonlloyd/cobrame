@@ -7,7 +7,7 @@ A COBRApy_ extension for constructing and simulating genome-scale models of meta
 
 For more information on ME-models and the COBRAme ME-model architecture, see the COBRAme readthedocs_.
 
-If using COBRAme or iJL1678b-ME in a publication, please cite: `10.1371/journal.pcbi.1006302 <https://doi.org/10.1371/journal.pcbi.1006302>`_.
+If using COBRAme or iJL1678b-ME in a publication, please cite: `doi:10.1371/journal.pcbi.1006302 <https://doi.org/10.1371/journal.pcbi.1006302>`_. 
 
 COBRAme with Docker
 -------------------
